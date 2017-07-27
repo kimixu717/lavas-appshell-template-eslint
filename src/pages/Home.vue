@@ -16,10 +16,6 @@
     methods: {
       ...mapActions('appShell/appHeader', [
         'setAppHeader'
-      ]),
-      ...mapActions('appShell/appBottomNavigator', [
-        'showBottomNav',
-        'activateBottomNav'
       ])
     },
     async asyncData() {
@@ -41,8 +37,6 @@
           }
         ]
       })
-      this.activateBottomNav('home')
-      this.showBottomNav()
     }
   }
 </script>

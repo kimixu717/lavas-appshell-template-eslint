@@ -11,7 +11,6 @@ import * as types from './store/mutation-types'
 let Home = () => import('@/pages/Home.vue')
 let Detail = () => import('@/pages/Detail.vue')
 let NotFound = () => import('@/pages/NotFound.vue')
-let User = () => import('@/pages/User.vue')
 let Search = () => import('@/pages/Search.vue')
 
 Vue.use(Router)
@@ -34,11 +33,6 @@ export function createRouter() {
         meta: {
           notKeepAlive: true
         }
-      },
-      {
-        path: '/user',
-        name: 'user',
-        component: User
       },
       {
         path: '/search',

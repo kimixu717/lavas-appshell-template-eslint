@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-    <div class="app-shell app-shell-bottom-navigation">
+    <div class="app-shell">
       <app-header class="app-shell-header" @click-menu="handleClickHeaderMenu" @click-back="handleClickHeaderBack"></app-header>
       <app-sidebar @hide-sidebar="handleHideSidebar" @show-sidebar="handleShowSidebar"></app-sidebar>
       <div class="app-view-wrapper">
         <transition :name="pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
           <keep-alive>
-            <router-view :key="$route.fullPath" v-if="!$route.meta.notKeepAlive" class="app-view" :class="{'app-view-with-header': appHeader.show,'app-view-with-footer': appBottomNavigator.show}"></router-view>
+            <router-view :key="$route.fullPath" v-if="!$route.meta.notKeepAlive" class="app-view" :class="{'app-view-with-header': appHeader.show}"></router-view>
           </keep-alive>
         </transition>
         <transition :name="pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
-          <router-view :key="$route.fullPath" v-if="$route.meta.notKeepAlive" class="app-view" :class="{'app-view-with-header': appHeader.show,'app-view-with-footer': appBottomNavigator.show}"></router-view>
+          <router-view :key="$route.fullPath" v-if="$route.meta.notKeepAlive" class="app-view" :class="{'app-view-with-header': appHeader.show}"></router-view>
         </transition>
       </div>
-      <app-bottom-navigator class="app-shell-footer" @click-nav="handleClickBottomNav"></app-bottom-navigator>
     </div>
   </div>
 </template>
@@ -22,14 +21,12 @@
   import { mapState, mapActions } from 'vuex'
   import AppHeader from '@/components/AppHeader'
   import AppSidebar from '@/components/AppSidebar'
-  import AppBottomNavigator from '@/components/AppBottomNavigator'
 
   export default {
     name: 'app',
     components: {
       AppHeader,
-      AppSidebar,
-      AppBottomNavigator
+      AppSidebar
     },
     data() {
       return {}
@@ -37,7 +34,6 @@
     computed: {
       ...mapState('appShell', [
         'appHeader',
-        'appBottomNavigator',
         'pageTransitionName'
       ])
     },
@@ -48,9 +44,6 @@
       ...mapActions('appShell/appSidebar', [
         'showSidebar',
         'hideSidebar'
-      ]),
-      ...mapActions('appShell/appBottomNavigator', [
-        'activateBottomNav'
       ]),
       handleBeforeEnter(el) {
         this.setPageSwitching(true)
@@ -69,9 +62,6 @@
       },
       handleShowSidebar() {
         this.showSidebar()
-      },
-      handleClickBottomNav({ name }) {
-        this.activateBottomNav(name)
       }
     }
   }
@@ -112,12 +102,6 @@
       left 0
       right 0
 
-    .app-shell-footer
-      position fixed
-      bottom 0
-      left 0
-      right 0
-
     .app-view-wrapper
       flex 1
       position relative
@@ -143,9 +127,6 @@
 
         &.app-view-with-header
           top $app-header-height
-
-        &.app-view-with-footer
-          bottom $app-footer-height
 
         &.slide-left-enter
           transform translate(100%, 0)
