@@ -8,6 +8,10 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import { createApp } from './app'
 import ProgressBar from '@/components/ProgressBar.vue'
+import http from './http'
+
+// http方法绑定到vue实例, 组件内通过 $http 访问
+Vue.prototype.$http = http
 
 // 全局的进度条，在组件中可通过 $loading 访问
 let loading = Vue.prototype.$loading = new Vue(ProgressBar).$mount()
