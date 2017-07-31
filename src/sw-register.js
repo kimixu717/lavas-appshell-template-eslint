@@ -24,8 +24,8 @@ navigator.serviceWorker && navigator.serviceWorker.register('/service-worker.js'
         </style>
         <div class="app-refresh" id="app-refresh">
           <div class="app-refresh-wrap" onclick="location.reload()">
-            <label>已更新最新版本</label>
-            <span>点击刷新</span>
+            <label>Has been updated</label>
+            <span>Click to refresh</span>
           </div>
         </div>
       `
