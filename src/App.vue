@@ -122,7 +122,7 @@
 
         /*隐藏掉scrollbar*/
         &::-webkit-scrollbar
-          width 0px
+          width 0
           background transparent
 
         &.app-view-with-header
