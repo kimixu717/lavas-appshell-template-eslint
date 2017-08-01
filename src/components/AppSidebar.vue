@@ -1,19 +1,19 @@
 <template>
-  <sidebar v-model="sidebarStatus">
+  <sidebar v-model="sidebarStatus" :enable="enableSidebar">
     <!-- sidebar 内容部分 -->
     <div
       class="app-sidebar-content">
       <!-- 头部 -->
       <div v-if="title" class="app-sidebar-title" @click.stop="closeAndGo('/')">
         <span class="app-sidebar-title-left-icon">
-          <img v-if="title.imageLeft" :src="title.imageLeft" :alt="title.altLeft"></img>
+          <img v-if="title.imageLeft" :src="title.imageLeft" :alt="title.altLeft">
           <icon v-else-if="title.svgLeft" :name="title.svgLeft"></icon>
           <v-icon light v-else-if="title.iconLeft">{{ title.iconLeft }}</v-icon>
         </span>
         <span>{{ title.text }}</span>
         <slot name="logo" class="app-sidebar-title-right-logo">
           <span class="app-sidebar-title-right-logo">
-            <img v-if="title.imageRight" :src="title.imageRight" :alt="title.altRight"></img>
+            <img v-if="title.imageRight" :src="title.imageRight" :alt="title.altRight">
             <icon v-else-if="title.svgRight" :name="title.svgRight"></icon>
             <v-icon v-else-if="title.iconRight">{{ title.iconRight }}</v-icon>
           </span>
@@ -50,7 +50,7 @@
             <ul v-if="block.list">
               <li v-for="item in block.list" :key="item.text" @click.stop="closeAndGo(item.route)">
                 <span v-if="item.icon || item.image || item.svg " class="app-sidebar-block-left-icon">
-                  <img v-if="item.image" :src="item.image" :alt="item.alt"></img>
+                  <img v-if="item.image" :src="item.image" :alt="item.alt">
                   <icon v-else-if="item.svg" :name="item.svg"></icon>
                   <v-icon v-else-if="item.icon">{{ item.icon }}</v-icon>
                 </span>
@@ -91,6 +91,10 @@
             this.$emit('hide-sidebar')
           }
         }
+      },
+      enableSidebar() {
+        return this.$store.state.appShell.appHeader.show
+          && this.$store.state.appShell.appHeader.showMenu
       }
     },
     methods: {
