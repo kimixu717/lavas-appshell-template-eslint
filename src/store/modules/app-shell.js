@@ -92,11 +92,9 @@ let mutations = {
 
 export default {
   namespaced: true,
-  /* eslint-disable */
   actions,
   mutations,
   state,
-  /* eslint-enable */
   modules: {
 
     /**

@@ -9,14 +9,14 @@ module.exports = {
     "sourceType": "module"
   },
   // required to lint *.vue files
-  plugins: [
-    'html'
+  "plugins": [
+    "html"
   ],
   // check if imports actually resolve
-  'settings': {
-    'import/resolver': {
-      'webpack': {
-        'config': 'build/webpack.base.conf.js'
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "build/webpack.base.conf.js"
       }
     }
   },
@@ -33,7 +33,8 @@ module.exports = {
       "error",
       "never"
     ],
-    'no-unused-vars': 0,
-    'linebreak-style': [0, "unix"]
+    "no-unused-vars": 0,
+    "linebreak-style": [0, "unix"],
+    "no-console": 0
   }
 }
