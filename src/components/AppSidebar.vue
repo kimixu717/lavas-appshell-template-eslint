@@ -1,8 +1,7 @@
 <template>
-  <sidebar v-model="sidebarStatus" :enable="enableSidebar">
+  <sidebar v-model="sidebarStatus">
     <!-- sidebar 内容部分 -->
-    <div
-      class="app-sidebar-content">
+    <div class="app-sidebar-content">
       <!-- 头部 -->
       <div v-if="title" class="app-sidebar-title" @click.stop="closeAndGo('/')">
         <span class="app-sidebar-title-left-icon">
@@ -18,27 +17,6 @@
             <v-icon v-else-if="title.iconRight">{{ title.iconRight }}</v-icon>
           </span>
         </slot>
-      </div>
-
-      <!-- 用户信息 -->
-      <div v-if="user" class="app-sidebar-user">
-        <div class="user-avatar">
-          <v-icon light class="user-avatar-icon">face</v-icon>
-        </div>
-        <div class="user-info">
-          <div class="user-name">
-            <v-icon>person</v-icon>
-            {{user.name}}
-          </div>
-          <div class="user-location">
-            <v-icon>room</v-icon>
-            {{user.location}}
-          </div>
-          <div class="user-email">
-            <v-icon>email</v-icon>
-            {{user.email}}
-          </div>
-        </div>
       </div>
 
       <!-- 导航列表分区块 -->
@@ -76,7 +54,6 @@
       ...mapState('appShell/appSidebar', [
         'show',
         'title',
-        'user',
         'blocks'
       ]),
       sidebarStatus: {
@@ -91,10 +68,6 @@
             this.$emit('hide-sidebar')
           }
         }
-      },
-      enableSidebar() {
-        return this.$store.state.appShell.appHeader.show
-          && this.$store.state.appShell.appHeader.showMenu
       }
     },
     methods: {
