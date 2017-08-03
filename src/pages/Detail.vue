@@ -43,7 +43,7 @@
     created() {
       this.setAppHeader({
         show: true,
-        title: 'Lavas',
+        title: 'Index',
         showMenu: false,
         showBack: true,
         showLogo: false,

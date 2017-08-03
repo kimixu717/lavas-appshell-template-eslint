@@ -1,15 +1,14 @@
 <template>
   <div>
     <div class="content">
-      <h2>LAVAS</h2>
-      <h4>[ˈlɑ:vəz]</h4>
+      <h2>content</h2>
     </div>
   </div>
 </template>
 
 <script>
   import { mapActions } from 'vuex'
-
+  
   export default {
     name: 'home',
     props: {},
@@ -26,7 +25,7 @@
     activated() {
       this.setAppHeader({
         show: true,
-        title: 'Lavas',
+        title: 'Index',
         showMenu: true,
         showBack: false,
         showLogo: true,
@@ -43,18 +42,13 @@
 
 <style lang="stylus" scoped>
   $text-color := rgba($material-theme.text-color, $material-theme.primary-text-percent)
-
+  
   .content
-    width 100%
-    position absolute
-    top 50%
-    left 50%
-    transform translate(-50%, -50%)
-
+    
     h2
       font-size 46px
       font-weight 500
-
+    
     h2, h4
       color $text-color
 
