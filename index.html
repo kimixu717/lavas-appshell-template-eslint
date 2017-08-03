@@ -22,13 +22,16 @@
   <% for (var cssFilePath of htmlWebpackPlugin.files.css) { %>
   <link rel="preload" href="<%= cssFilePath %>" as="style">
   <% } %>
-  <!-- in develop load vconsole -->
-  <!--<% if (process.env.NODE_ENV !== 'production') { %>
+  <!-- load vconsole in mobile phone -->
+  <% if (process.env.NODE_ENV === 'vconsole') { %>
   <script src="https://cdn.jsdelivr.net/npm/vconsole"></script>
-  <% } %>-->
+  <% } %>
 </head>
 <body>
 <div id="app"></div>
+<noscript>
+  Please enable JavaScript on your browser.
+</noscript>
 <!-- built files will be auto injected -->
 </body>
 </html>

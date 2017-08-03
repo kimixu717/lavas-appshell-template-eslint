@@ -48,5 +48,14 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
+  },
+  vconsole: {
+    env: require('./vconsole.env'),
+    port: 9009,
+    autoOpenBrowser: true,
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    proxyTable: {},
+    cssSourceMap: false
   }
 };

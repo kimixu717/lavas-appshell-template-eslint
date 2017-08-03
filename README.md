@@ -18,6 +18,10 @@
   ``` bash
   npm run dev
   ```
+- 在 localhost:9009 上启动服务器,用于手机上查看控制台报错
+  ``` bash
+  npm run vconsole
+  ```
 - 检查您的代码是否规范
   ``` bash
   npm run lint
