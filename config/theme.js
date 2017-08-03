@@ -3,7 +3,7 @@
  * @author KimiXu(xuyujin@banggood.cn)
  */
 
-'use strict';
+'use strict'
 
 // 定义主题列表
 let themeList = {
@@ -31,8 +31,8 @@ let themeList = {
       'inactive-icon-percent': .38
     }
   }
-};
+}
 
 module.exports = {
   theme: themeList.myTheme // 和主题列表中的主题名称对应
-};
+}

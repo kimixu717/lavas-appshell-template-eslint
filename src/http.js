@@ -11,7 +11,7 @@ import { stringify } from 'qs'
  */
 const http = axios.create({
   baseURL: '',
-  timeout: 30000
+  timeout: 60000
 })
 
 // 对axios发起的post请求进行拦截，对post参数进行修改

@@ -3,14 +3,14 @@
  * @author KimiXu(xuyujin@banggood.cn)
  */
 
-'use strict';
+'use strict'
 
-const webpack = require('webpack');
-const config = require('../config');
-const merge = require('webpack-merge');
-const baseWebpackConfig = require('./webpack.base.conf');
-const nodeExternals = require('webpack-node-externals');
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const webpack = require('webpack')
+const config = require('../config')
+const merge = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base.conf')
+const nodeExternals = require('webpack-node-externals')
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = merge(baseWebpackConfig, {
   target: 'node',
@@ -38,4 +38,4 @@ module.exports = merge(baseWebpackConfig, {
       }
     })
   ]
-});
+})

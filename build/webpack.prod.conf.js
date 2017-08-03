@@ -3,25 +3,25 @@
  * @author KimiXu(xuyujin@banggood.cn)
  */
 
-'use strict';
+'use strict'
 
-const path = require('path');
-const utils = require('./utils');
-const webpack = require('webpack');
-const config = require('../config');
-const merge = require('webpack-merge');
-const baseWebpackConfig = require('./webpack.base.conf');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
-const SkeletonWebpackPlugin = require('vue-skeleton-webpack-plugin');
-const SwRegisterWebpackPlugin = require('sw-register-webpack-plugin');
+const path = require('path')
+const utils = require('./utils')
+const webpack = require('webpack')
+const config = require('../config')
+const merge = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base.conf')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const SkeletonWebpackPlugin = require('vue-skeleton-webpack-plugin')
+const SwRegisterWebpackPlugin = require('sw-register-webpack-plugin')
 
 let env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
-  : config.build.env;
+  : config.build.env
 
 let webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -100,7 +100,7 @@ let webpackConfig = merge(baseWebpackConfig, {
           && module.resource.indexOf(
             path.join(__dirname, '../node_modules')
           ) === 0
-        );
+        )
       }
     }),
 
@@ -108,11 +108,11 @@ let webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vue',
       minChunks: function (module, count) {
-        let context = module.context;
-        let targets = ['vue', 'vue-router', 'vuex'];
+        let context = module.context
+        let targets = ['vue', 'vue-router', 'vuex']
         return context
           && context.indexOf('node_modules') >= 0
-          && targets.find(t => new RegExp('/' + t + '/', 'i').test(context));
+          && targets.find(t => new RegExp('/' + t + '/', 'i').test(context))
       }
     }),
 
@@ -138,10 +138,10 @@ let webpackConfig = merge(baseWebpackConfig, {
       filePath: path.resolve(__dirname, '../src/sw-register.js')
     })
   ]
-});
+})
 
 if (config.build.productionGzip) {
-  let CompressionWebpackPlugin = require('compression-webpack-plugin');
+  let CompressionWebpackPlugin = require('compression-webpack-plugin')
 
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
@@ -155,12 +155,12 @@ if (config.build.productionGzip) {
       threshold: 10240,
       minRatio: 0.8
     })
-  );
+  )
 }
 
 if (config.build.bundleAnalyzerReport) {
-  let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-  webpackConfig.plugins.push(new BundleAnalyzerPlugin());
+  let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
-module.exports = webpackConfig;
+module.exports = webpackConfig

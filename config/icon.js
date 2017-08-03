@@ -3,7 +3,7 @@
  * @author KimiXu(xuyujin@banggood.cn)
  */
 
-const path = require('path');
+const path = require('path')
 
 module.exports = {
 
@@ -18,4 +18,4 @@ module.exports = {
   // icons: [
   //     'envelope'
   // ]
-};
+}

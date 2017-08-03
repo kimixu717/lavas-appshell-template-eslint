@@ -4,10 +4,10 @@
  */
 
   // see http://vuejs-templates.github.io/webpack for documentation.
-const path = require('path');
-const swPrecacheConfig = require('./sw-precache');
-const theme = require('./theme');
-const icon = require('./icon');
+const path = require('path')
+const swPrecacheConfig = require('./sw-precache')
+const theme = require('./theme')
+const icon = require('./icon')
 
 module.exports = {
   icon: icon,
@@ -58,4 +58,4 @@ module.exports = {
     proxyTable: {},
     cssSourceMap: false
   }
-};
+}
