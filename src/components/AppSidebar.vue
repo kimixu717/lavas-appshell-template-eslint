@@ -1,57 +1,30 @@
 <template>
-  <sidebar v-model="sidebarStatus">
-    <!-- sidebar 内容部分 -->
-    <div class="app-sidebar-content">
-      <!-- 头部 -->
-      <div v-if="title" class="app-sidebar-title" @click.stop="closeAndGo('/')">
-        <span class="app-sidebar-title-left-icon">
-          <img v-if="title.imageLeft" :src="title.imageLeft" :alt="title.altLeft">
-          <icon v-else-if="title.svgLeft" :name="title.svgLeft"></icon>
-          <v-icon light v-else-if="title.iconLeft">{{ title.iconLeft }}</v-icon>
-        </span>
-        <span>{{ title.text }}</span>
-        <slot name="logo" class="app-sidebar-title-right-logo">
-          <span class="app-sidebar-title-right-logo">
-            <img v-if="title.imageRight" :src="title.imageRight" :alt="title.altRight">
-            <icon v-else-if="title.svgRight" :name="title.svgRight"></icon>
-            <v-icon v-else-if="title.iconRight">{{ title.iconRight }}</v-icon>
-          </span>
-        </slot>
-      </div>
-
-      <!-- 导航列表分区块 -->
-      <div v-if="blocks" class="app-sidebar-blocks">
-        <ul>
-          <!-- 单个区块 -->
-          <li v-for="(block, index) in blocks" :key="index" class="app-sidebar-block">
-            <div v-if="block.sublistTitle" class="sub-list-title">{{ block.sublistTitle }}</div>
-            <ul v-if="block.list">
-              <li v-for="item in block.list" :key="item.text" @click.stop="closeAndGo(item.route)">
-                <span v-if="item.icon || item.image || item.svg " class="app-sidebar-block-left-icon">
-                  <img v-if="item.image" :src="item.image" :alt="item.alt">
-                  <icon v-else-if="item.svg" :name="item.svg"></icon>
-                  <v-icon v-else-if="item.icon">{{ item.icon }}</v-icon>
-                </span>
-                <span v-if="item.text" class="app-sidebar-block-text">{{ item.text }}</span>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </sidebar>
+  <aside class="js-side-nav side-nav">
+    <nav class="js-side-nav-container side-nav__container">
+      <button class="js-menu-hide side-nav__hide material-icons">close</button>
+      <header class="side-nav__header">
+        Side Nav
+      </header>
+      <ul class="side-nav__content">
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        <li>Four</li>
+      </ul>
+    </nav>
+  </aside>
 </template>
 
 <script>
   import { mapState } from 'vuex'
-  import Sidebar from './Sidebar'
+  import SideNav from '../assets/plugin/sideNav/side-nav'
 
   export default {
-    components: {
-      Sidebar
+    mounted() {
+      new SideNav()
     },
     computed: {
-      ...mapState('appShell/appSidebar', [
+      /*...mapState('appShell/appSidebar', [
         'show',
         'title',
         'blocks'
@@ -68,130 +41,103 @@
             this.$emit('hide-sidebar')
           }
         }
-      }
+      }*/
     },
     methods: {
-      close() {
+      /*close() {
         this.sidebarStatus = false
       },
       closeAndGo(route) {
         this.$router.push(route)
         this.close()
-      }
+      }*/
     }
   }
 </script>
 
 <style lang="stylus" scoped>
-  // 左侧触发滑动宽度
-  $swipe-width = 20px
-
-  ul, li
+  .side-nav
+    position fixed
+    left 0
+    top 0
+    z-index $app-sidebar-zindex
+    width 100%
+    height 100%
+    overflow hidden
+    pointer-events none
+    &::before
+      content ''
+      display block
+      position absolute
+      left 0
+      top 0
+      width 100%
+      height 100%
+      background rgba(0,0,0,0.4)
+      opacity 0
+      will-change opacity
+      transition opacity 0.3s cubic-bezier(0,0,0.3,1)
+  
+  .side-nav--visible
+    pointer-events auto
+    &.side-nav--animatable
+      .side-nav__container
+        transition transform 0.33s cubic-bezier(0,0,0.3,1)
+    &::before
+      opacity 1
+    .side-nav__container
+      transform none
+  
+  .side-nav__container
+    position relative
+    width 90%
+    max-width 400px
+    background #FFF
+    height 100%
+    box-shadow 2px 0 12px rgba(0,0,0,0.4)
+    transform translateX(-102%)
+    display flex
+    flex-direction column
+    will-change transform
+  
+  .side-nav--animatable
+    .side-nav__container
+      transition transform 0.13s cubic-bezier(0,0,0.3,1)
+  
+  .side-nav__hide
+    position absolute
+    left 16px
+    top 16px
+    background none
+    border none
+    color #FFF
+    width 24px
+    height 24px
     padding 0
     margin 0
+  
+  .side-nav__header
+    height 200px
+    background #EA2663
+    color #FFF
+    display flex
+    padding 16px
+    align-items flex-end
+    font-size 24px
+  
+  .side-nav__content
+    flex 1
     list-style none
-
-  a
-    text-decoration none
-    color #333
-
-  .app-sidebar-content
-    &.app-sidebar-content-right
-      box-shadow -3px 0 8px 1px rgba(0, 0, 0, 0.4)
-
-      &.app-sidebar-title,
-      &.app-sidebar-blocks
-        text-align right
-
-    .app-sidebar-title-left-icon,
-    .app-sidebar-block-left-icon
-      display inline-block
-      width ($app-sidebar-left-icon-size + 10) px
-      height 100%
-
-      img
-        vertical-align middle
-        width ($app-sidebar-left-icon-size) px
-        height ($app-sidebar-left-icon-size) px
-      svg
-        position relative
-        left 0
-        top 0
-        transform none
-        vertical-align middle
-        height ($app-sidebar-left-icon-size) px
-        width ($app-sidebar-left-icon-size) px
-
-      .material-icons
-        font-size ($app-sidebar-left-icon-size) px
-
-    .app-sidebar-block-text
-      display inline-block
-      height 100%
-      vertical-align middle
-
-    .app-sidebar-title-right-logo,
-    .app-sidebar-block-right-logo
-      float right
-
-      img
-        width 20px
-        height 20px
-        margin-right 10px
-
-    .app-sidebar-title
-      color #fff
-      padding 0 10px
-      font-size 16px
-      font-weight bold
-      height $app-sidebar-title-height
-      line-height $app-sidebar-title-height
-      background: $theme.primary
-      text-align left
-
-    .app-sidebar-user
-      padding 0 10px
-      font-size 16px
-      .user-avatar
-        margin 30px auto 0 auto
-        height 100px
-        width 100px
-        i
-          font-size 100px
-          color #666
-      .user-info
-        padding 20px 0
-        text-align center
-        border-bottom 1px solid #e0e0e0
-        > div
-          margin 5px 0
-          i
-            font-size 18px
-            margin-right 5px
-
-    .app-sidebar-blocks
-      text-align left
-
-      .app-sidebar-block
-        padding 10px 0
-        border-bottom 1px solid #e0e0e0
-        color #333
-
-        .sub-list-title
-          height $app-sidebar-nav-height
-          line-height $app-sidebar-nav-height
-          text-indent ($app-sidebar-left-icon-size) px
-          font-weight bold
-          color #888
-
-        li
-          padding-left 15px
-          height $app-sidebar-nav-height
-          line-height $app-sidebar-nav-height
-
-          &:last-child
-            border none
-
-        &:last-child
-          border-bottom none
+    padding 0
+    margin 0
+    text-align left
+    overflow-x hidden
+    overflow-y auto
+    -webkit-overflow-scrolling touch
+    li
+      height 48px
+      line-height 48px
+      padding 0 16px
+      &:hover
+        background #CCC
 </style>
