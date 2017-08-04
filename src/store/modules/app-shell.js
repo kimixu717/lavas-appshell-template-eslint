@@ -173,80 +173,40 @@ export default {
         }
       }
     },
-
-    /**
-     * 左侧侧边栏的数据
-     *
-     * @type {Object}
-     */
     appSidebar: {
       namespaced: true,
       state: {
-        show: false, // 是否显示sidebar
-
-        // 头部条的相关配置
-        title: {
-          imageLeft: '',
-          altLeft: '',
-          svgLeft: '',
-          iconLeft: 'home',
-          text: 'Home',
-          imageRight: '',
-          altRight: '',
-          svgRight: '',
-          iconRight: ''
-        },
-
-        // 分块组
-        blocks: [
-          {
-            // 子列表1
-            sublistTitle: 'Sublist1',
-            list: [
-              {
-                text: 'Detail Page 1',
-                icon: 'sentiment_satisfied',
-                route: '/detail/1'
-              },
-              {
-                text: 'Detail Page 2',
-                image: 'https://github.com/google/material-design-icons/blob/master/social/2x_web/ic_mood_bad_black_48dp.png?raw=true',
-                alt: 'mood-bad',
-                route: '/detail/2'
-              },
-              {
-                text: 'Detail Page 3',
-                svg: 'svg-sentiment-very-satisfied',
-                route: '/detail/3'
-              }
-            ]
-          }
-        ]
+        
+        /**
+         * 是否显示侧边栏
+         * @type Boolean
+         */
+        show: false
+      },
+      getters: {
+        sidebarShow(state, getters, rootState) {
+          return state.show && rootState.appHeader.show && rootState.appHeader.showMenu
+        }
       },
       actions: {
-
+  
         /**
-         * 展示侧边栏
-         *
-         * @param {Function} commit commit
+         * 显示侧边栏
+         * @param commit
          */
         showSidebar({ commit }) {
           commit(types.SET_SIDEBAR_VISIBILITY, true)
         },
-
         /**
          * 隐藏侧边栏
-         *
-         * @param {Function} commit commit
+         * @param commit
          */
         hideSidebar({ commit }) {
           commit(types.SET_SIDEBAR_VISIBILITY, false)
         }
       },
-      mutations: {
-        [types.SET_SIDEBAR_VISIBILITY](state, sidebarVisibility) {
-          state.show = sidebarVisibility
-        }
+      [types.SET_SIDEBAR_VISIBILITY](state, bool) {
+        state.show = bool
       }
     }
   }

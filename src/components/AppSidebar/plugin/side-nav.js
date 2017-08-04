@@ -19,7 +19,7 @@ import Detabinator from './detabinator'
 
 export default class SideNav {
   constructor () {
-    this.showButtonEl = document.querySelector('.btn--raised');
+    this.showButtonEl = document.querySelector('.showMenu');
     this.hideButtonEl = document.querySelector('.js-menu-hide');
     this.sideNavEl = document.querySelector('.js-side-nav');
     this.sideNavContainerEl = document.querySelector('.js-side-nav-container');

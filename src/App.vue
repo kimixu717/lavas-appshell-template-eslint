@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="app-shell">
-      <app-header class="app-shell-header" @click-menu="handleClickHeaderMenu" @click-back="handleClickHeaderBack"></app-header>
-      <app-sidebar @hide-sidebar="handleHideSidebar" @show-sidebar="handleShowSidebar"></app-sidebar>
+      <app-header class="app-shell-header" @click-back="handleClickHeaderBack"></app-header>
+      <app-sidebar></app-sidebar>
       <div class="app-view-wrapper">
         <transition :name="pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
           <keep-alive>
@@ -20,7 +20,7 @@
 <script>
   import { mapState, mapActions } from 'vuex'
   import AppHeader from '@/components/AppHeader'
-  import AppSidebar from '@/components/AppSidebar'
+  import AppSidebar from '@/components/AppSidebar/AppSidebar'
 
   export default {
     name: 'app',
@@ -41,10 +41,6 @@
       ...mapActions('appShell', [
         'setPageSwitching'
       ]),
-      ...mapActions('appShell/appSidebar', [
-        'showSidebar',
-        'hideSidebar'
-      ]),
       handleBeforeEnter(el) {
         this.setPageSwitching(true)
       },
@@ -52,16 +48,7 @@
         this.setPageSwitching(false)
       },
       handleClickHeaderBack() {
-        this.$router.go(-1)
-      },
-      handleClickHeaderMenu() {
-        this.showSidebar()
-      },
-      handleHideSidebar() {
-        this.hideSidebar()
-      },
-      handleShowSidebar() {
-        this.showSidebar()
+        this.$router.back()
       }
     }
   }

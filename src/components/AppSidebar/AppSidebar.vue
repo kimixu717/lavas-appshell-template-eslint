@@ -6,51 +6,36 @@
         Side Nav
       </header>
       <ul class="side-nav__content">
-        <li>One</li>
-        <li>Two</li>
-        <li>Three</li>
-        <li>Four</li>
+        <li>
+          <router-link to="/detail/1">detail 1</router-link>
+        </li>
+        <li>
+          <router-link to="/detail/2">detail 2</router-link>
+        </li>
+        <li>
+          <router-link to="/detail/3">detail 3</router-link>
+        </li>
       </ul>
     </nav>
   </aside>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import SideNav from '../assets/plugin/sideNav/side-nav'
+  import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
+  import SideNav from './plugin/side-nav'
 
   export default {
+    name: 'appSidebar',
     mounted() {
-      new SideNav()
+      console.log(333)
+      window.a = new SideNav()
     },
     computed: {
-      /*...mapState('appShell/appSidebar', [
-        'show',
-        'title',
-        'blocks'
-      ]),
-      sidebarStatus: {
-        get() {
-          return this.show
-        },
-        set(val) {
-          if (val) {
-            this.$emit('show-sidebar')
-          }
-          else {
-            this.$emit('hide-sidebar')
-          }
-        }
-      }*/
+      ...mapState('appShell/appSidebar', ['show']),
+      ...mapGetters('appShell/appSidebar', ['sidebarShow'])
     },
     methods: {
-      /*close() {
-        this.sidebarStatus = false
-      },
-      closeAndGo(route) {
-        this.$router.push(route)
-        this.close()
-      }*/
+      ...mapActions('appShell/appSidebar', ['showSidebar', 'hideSidebar'])
     }
   }
 </script>
@@ -108,6 +93,7 @@
     position absolute
     left 16px
     top 16px
+    z-index $app-sidebar-zindex
     background none
     border none
     color #FFF
