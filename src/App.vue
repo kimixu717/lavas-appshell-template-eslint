@@ -20,7 +20,7 @@
 <script>
   import { mapState, mapActions } from 'vuex'
   import AppHeader from '@/components/AppHeader'
-  import AppSidebar from '@/components/AppSidebar/AppSidebar'
+  import AppSidebar from '@/components/AppSidebar'
 
   export default {
     name: 'app',

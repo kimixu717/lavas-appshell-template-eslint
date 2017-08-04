@@ -172,42 +172,6 @@ export default {
           state = Object.assign(state, appHeader)
         }
       }
-    },
-    appSidebar: {
-      namespaced: true,
-      state: {
-        
-        /**
-         * 是否显示侧边栏
-         * @type Boolean
-         */
-        show: false
-      },
-      getters: {
-        sidebarShow(state, getters, rootState) {
-          return state.show && rootState.appHeader.show && rootState.appHeader.showMenu
-        }
-      },
-      actions: {
-  
-        /**
-         * 显示侧边栏
-         * @param commit
-         */
-        showSidebar({ commit }) {
-          commit(types.SET_SIDEBAR_VISIBILITY, true)
-        },
-        /**
-         * 隐藏侧边栏
-         * @param commit
-         */
-        hideSidebar({ commit }) {
-          commit(types.SET_SIDEBAR_VISIBILITY, false)
-        }
-      },
-      [types.SET_SIDEBAR_VISIBILITY](state, bool) {
-        state.show = bool
-      }
     }
   }
 }

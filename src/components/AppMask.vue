@@ -10,6 +10,7 @@
 
 <script>
   export default {
+    name: 'appMask',
     props: ['show'],
     methods: {
       closeAppMask() {

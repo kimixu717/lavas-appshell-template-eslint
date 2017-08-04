@@ -11,6 +11,7 @@
 
 <script>
   export default {
+    name: 'progressBar',
     data() {
       return {
         percent: 0,
