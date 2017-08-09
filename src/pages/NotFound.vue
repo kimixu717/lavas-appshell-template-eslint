@@ -4,7 +4,7 @@
       <div class="not-found-avatar">
         <v-icon class="not-found-avatar-icon">info</v-icon>
       </div>
-      <p>页面未找到</p>
+      <p>Not Found</p>
     </div>
   </div>
 </template>
@@ -21,7 +21,7 @@
     },
     activated() {
       this.setAppHeader({
-        title: '页面未找到',
+        title: 'Not Found',
         show: true,
         showMenu: false,
         showBack: true,
