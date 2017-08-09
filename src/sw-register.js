@@ -25,7 +25,7 @@ navigator.serviceWorker && navigator.serviceWorker.register('/service-worker.js'
         <div class="app-refresh" id="app-refresh">
           <div class="app-refresh-wrap" onclick="location.reload()">
             <label>Has been updated</label>
-            <span>Click to refresh</span>
+            <span>Tap to refresh</span>
           </div>
         </div>
       `
