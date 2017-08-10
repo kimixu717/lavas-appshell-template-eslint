@@ -7,11 +7,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import * as types from './store/mutation-types'
 
-// 定义切割点，异步加载路由组件，第三个参数将组件分组
-const Home = r => require.ensure([], () => r(require('./pages/Home')))
-const Detail = r => require.ensure([], () => r(require('./pages/Detail')))
-const NotFound = r => require.ensure([], () => r(require('./pages/NotFound')))
-const Search = r => require.ensure([], () => r(require('./pages/Search')))
+// 定义切割点，异步加载路由组件，/* webpackChunkName: "group-home" */这段注释用于分组。
+const Home = () => import(/* webpackChunkName: "group-home" */ '@/pages/Home.vue')
+const Detail = () => import(/* webpackChunkName: "group-home" */ '@/pages/Detail.vue')
+const NotFound = () => import(/* webpackChunkName: "group-home" */ '@/pages/NotFound.vue')
+const Search = () => import(/* webpackChunkName: "group-home" */ '@/pages/Search.vue')
 
 Vue.use(Router)
 
