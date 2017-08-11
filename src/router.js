@@ -8,10 +8,10 @@ import Router from 'vue-router'
 import * as types from './store/mutation-types'
 
 // 定义切割点，异步加载路由组件，/* webpackChunkName: "group-home" */这段注释用于分组。
-const Home = () => import(/* webpackChunkName: "group-home" */ '@/pages/Home.vue')
-const Detail = () => import(/* webpackChunkName: "group-home" */ '@/pages/Detail.vue')
-const NotFound = () => import(/* webpackChunkName: "group-home" */ '@/pages/NotFound.vue')
-const Search = () => import(/* webpackChunkName: "group-home" */ '@/pages/Search.vue')
+const Home = () => import(/* webpackChunkName: "home" */ '@/pages/Home.vue')
+const Detail = () => import('@/pages/Detail.vue')
+const NotFound = () => import('@/pages/NotFound.vue')
+const Search = () => import('@/pages/Search.vue')
 
 Vue.use(Router)
 
@@ -39,6 +39,7 @@ export function createRouter() {
         name: 'search',
         component: Search
       },
+      // 404务必放在路由的最后
       {
         path: '*',
         name: 'notFound',
