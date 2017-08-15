@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import EventBus from '../event-bus'
+  import EventBus from '../../event-bus'
 
   class Detabinator {
     constructor(element) {
@@ -34,18 +34,18 @@
         element.querySelectorAll(this._focusableElementsString)
       )
     }
-  
+
     get inert() {
       return this._inert
     }
-  
+
     set inert(isInert) {
       if (this._inert === isInert) {
         return
       }
-    
+
       this._inert = isInert
-    
+
       this._focusableElements.forEach((child) => {
         if (isInert) {
           // If the child has an explict tabindex save it
@@ -67,7 +67,7 @@
       })
     }
   }
-  
+
   export default {
     name: 'appSidebar',
     data() {
@@ -95,12 +95,12 @@
       this.sideNavContainerEl = document.querySelector('.js-side-nav-container')
       this.detabinator = new Detabinator(this.sideNavContainerEl)
       this.detabinator.inert = true
-  
+
       // this.showButtonEl.addEventListener('click', this.showSideNav)
       this.hideButtonEl.addEventListener('click', this.hideSideNav)
       this.sideNavEl.addEventListener('click', this.hideSideNav)
       this.sideNavContainerEl.addEventListener('click', this.blockClicks)
-  
+
       this.sideNavEl.addEventListener('touchstart', this.onTouchStart, this.applyPassive())
       this.sideNavEl.addEventListener('touchmove', this.onTouchMove, this.applyPassive())
       this.sideNavEl.addEventListener('touchend', this.onTouchEnd)
@@ -125,28 +125,28 @@
       onTouchStart (evt) {
         if (!this.sideNavEl.classList.contains('side-nav--visible'))
           return
-    
+
         this.startX = evt.touches[0].pageX
         this.currentX = this.startX
-    
+
         this.touchingSideNav = true
         requestAnimationFrame(this.update)
       },
       onTouchMove (evt) {
         if (!this.touchingSideNav)
           return
-    
+
         this.currentX = evt.touches[0].pageX
       },
       onTouchEnd (evt) {
         if (!this.touchingSideNav)
           return
-    
+
         this.touchingSideNav = false
-    
+
         const translateX = Math.min(0, this.currentX - this.startX)
         this.sideNavContainerEl.style.transform = ''
-    
+
         if (translateX < 0) {
           this.hideSideNav()
         }
@@ -154,9 +154,9 @@
       update () {
         if (!this.touchingSideNav)
           return
-    
+
         requestAnimationFrame(this.update)
-    
+
         const translateX = Math.min(0, this.currentX - this.startX)
         this.sideNavContainerEl.style.transform = `translateX(${translateX}px)`
       },
@@ -205,7 +205,7 @@
       opacity 0
       will-change opacity
       transition opacity 0.3s cubic-bezier(0,0,0.3,1)
-  
+
   .side-nav--visible
     pointer-events auto
     &.side-nav--animatable
@@ -215,7 +215,7 @@
       opacity 1
     .side-nav__container
       transform none
-  
+
   .side-nav__container
     position relative
     width 90%
@@ -227,11 +227,11 @@
     display flex
     flex-direction column
     will-change transform
-  
+
   .side-nav--animatable
     .side-nav__container
       transition transform 0.13s cubic-bezier(0,0,0.3,1)
-  
+
   .side-nav__hide
     position absolute
     left 16px
@@ -244,7 +244,7 @@
     height 24px
     padding 0
     margin 0
-  
+
   .side-nav__header
     height 200px
     background #EA2663
@@ -253,7 +253,7 @@
     padding 16px
     align-items flex-end
     font-size 24px
-  
+
   .side-nav__content
     flex 1
     list-style none
