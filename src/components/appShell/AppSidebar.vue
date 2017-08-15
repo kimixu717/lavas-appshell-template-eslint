@@ -106,23 +106,23 @@
       this.sideNavEl.addEventListener('touchend', this.onTouchEnd)
     },
     methods: {
-      applyPassive () {
+      applyPassive() {
         if (this.supportsPassive !== undefined) {
-          return this.supportsPassive ? {passive: true} : false
+          return this.supportsPassive ? { passive: true } : false
         }
         // feature detect
         let isSupported = false
         try {
-          document.addEventListener('test', null, {get passive () {
+          document.addEventListener('test', null, { get passive() {
             isSupported = true
-          }})
+          } })
         } catch (e) {
           throw new Error('apply passive error')
         }
         this.supportsPassive = isSupported
         return this.applyPassive()
       },
-      onTouchStart (evt) {
+      onTouchStart(evt) {
         if (!this.sideNavEl.classList.contains('side-nav--visible'))
           return
 
@@ -132,13 +132,13 @@
         this.touchingSideNav = true
         requestAnimationFrame(this.update)
       },
-      onTouchMove (evt) {
+      onTouchMove(evt) {
         if (!this.touchingSideNav)
           return
 
         this.currentX = evt.touches[0].pageX
       },
-      onTouchEnd (evt) {
+      onTouchEnd(evt) {
         if (!this.touchingSideNav)
           return
 
@@ -151,7 +151,7 @@
           this.hideSideNav()
         }
       },
-      update () {
+      update() {
         if (!this.touchingSideNav)
           return
 
@@ -160,20 +160,20 @@
         const translateX = Math.min(0, this.currentX - this.startX)
         this.sideNavContainerEl.style.transform = `translateX(${translateX}px)`
       },
-      blockClicks (evt) {
+      blockClicks(evt) {
         evt.stopPropagation()
       },
-      onTransitionEnd (evt) {
+      onTransitionEnd(evt) {
         this.sideNavEl.classList.remove('side-nav--animatable')
         this.sideNavEl.removeEventListener('transitionend', this.onTransitionEnd)
       },
-      showSideNav () {
+      showSideNav() {
         this.sideNavEl.classList.add('side-nav--animatable')
         this.sideNavEl.classList.add('side-nav--visible')
         this.detabinator.inert = false
         this.sideNavEl.addEventListener('transitionend', this.onTransitionEnd)
       },
-      hideSideNav () {
+      hideSideNav() {
         this.sideNavEl.classList.add('side-nav--animatable')
         this.sideNavEl.classList.remove('side-nav--visible')
         this.detabinator.inert = true

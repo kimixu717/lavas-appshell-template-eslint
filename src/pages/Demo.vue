@@ -1,3 +1,5 @@
+<!--组件书写顺序：template -- script -- style-->
+<!--注意：类名命名规则：短横杠-->
 <template>
   <div class="detail-wrapper">
     <v-layout row wrap>
@@ -21,18 +23,23 @@
   import { mapActions } from 'vuex'
 
   export default {
+    // 每个组件请都取名字：命名规则为驼峰
     name: 'detail',
     methods: {
       ...mapActions('appShell/appHeader', [
         'setAppHeader'
       ])
     },
+    // 如若此页面进入需要依赖ajax，请务必按照此结构书写
+    // 路由层面对asyncData进行了处理，只有此函数完成才会进入页面
     async asyncData() {
       await new Promise((resolve, reject) => {
         setTimeout(resolve, 500)
       })
     },
+    // 如果meta未设置notkeepAlive则设置appshell在created，否则为activated
     created() {
+      // 设置appshell，每个页面必有的设置
       this.setAppHeader({
         show: true,
         title: 'Demo',
@@ -53,7 +60,8 @@
 </script>
 
 <style lang="stylus" scoped>
-
+  /*每个组件的样式文件都需写在组件内，且使用scoped属性*/
+  /*公共样式无需写在组件内，请写在assets/style/public内*/
   .detail-content
     font-size 16px
     line-height 30px
