@@ -4,16 +4,8 @@
       <v-flex xs10 offset-xs1>
         <article class="detail-content text-xs-center">
           <header class="detail-title text-xs-center">
-            Detail {{$route.params.id}}
+            Demo
           </header>
-          <router-link :to="{
-            name: 'detail',
-            params: {
-              id: Number($route.params.id) + 1
-            }
-          }">
-            Detail {{Number($route.params.id) + 1}}
-          </router-link>
           <p>
             Progressive Web Apps are user experiences that have the reach of the web, and are:
             Reliable - Load instantly and never show the downasaur, even in uncertain network conditions.
@@ -43,7 +35,7 @@
     created() {
       this.setAppHeader({
         show: true,
-        title: 'Index',
+        title: 'Demo',
         showMenu: false,
         showBack: true,
         showLogo: false,

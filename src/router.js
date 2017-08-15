@@ -9,7 +9,7 @@ import * as types from './store/mutation-types'
 
 // 定义切割点，异步加载路由组件，/* webpackChunkName: "group-home" */这段注释用于分组。
 const Home = () => import(/* webpackChunkName: "home" */ '@/pages/Home.vue')
-const Detail = () => import('@/pages/Detail.vue')
+const Demo = () => import('@/pages/Demo.vue')
 const NotFound = () => import('@/pages/NotFound.vue')
 const Search = () => import('@/pages/Search.vue')
 
@@ -22,17 +22,17 @@ export function createRouter() {
     mode: 'history',
     routes: [
       {
-        path: '/',
-        name: 'home',
-        component: Home
-      },
-      {
-        path: '/detail/:id',
-        name: 'detail',
-        component: Detail,
+        path: '/demo',
+        name: 'demo',
+        component: Demo,
         meta: {
           notKeepAlive: true
         }
+      },
+      {
+        path: '/',
+        name: 'home',
+        component: Home
       },
       {
         path: '/search',

@@ -118,7 +118,7 @@ export default {
          *
          * @type {string}
          */
-        title: 'new_chic',
+        title: 'Home',
 
         /**
          * logo图标名称

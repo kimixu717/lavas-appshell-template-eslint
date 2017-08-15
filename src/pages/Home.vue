@@ -8,7 +8,7 @@
 
 <script>
   import { mapActions } from 'vuex'
-  
+
   export default {
     name: 'home',
     props: {},
@@ -25,7 +25,7 @@
     activated() {
       this.setAppHeader({
         show: true,
-        title: 'Index',
+        title: 'Home',
         showMenu: true,
         showBack: false,
         showLogo: true,
@@ -42,13 +42,13 @@
 
 <style lang="stylus" scoped>
   $text-color := rgba($material-theme.text-color, $material-theme.primary-text-percent)
-  
+
   .content
-    
+
     h2
       font-size 46px
       font-weight 500
-    
+
     h2, h4
       color $text-color
 
