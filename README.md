@@ -60,3 +60,4 @@
 - 本项目demo组件在pages/demo下，请严格按照说明书写
 - 1px边框解决方案请使用assets/style/1px.styl
 - 使用editorconfig, vsCode等编辑器需安装插件： http://editorconfig.org/
+- UI库：https://vuetifyjs.com/
